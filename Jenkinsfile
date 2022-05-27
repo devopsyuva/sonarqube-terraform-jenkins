@@ -38,6 +38,10 @@ pipeline {
                 sh 'terraform plan -no-color'
             }
         }
+        stage('Publish Artifacts') {
+            steps {
+                archiveArtifacts artifacts: 'terraform.tfstate', excludes: 'output/*.md'
+            }
         stage('Terraform Apply') {
             steps {
                 sh 'terraform apply -auto-approve'
