@@ -42,6 +42,7 @@ pipeline {
             steps {
                 archiveArtifacts artifacts: 'terraform.tfstate', excludes: 'output/*.md'
             }
+        }
         stage('Terraform Apply') {
             steps {
                 sh 'terraform apply -auto-approve'
